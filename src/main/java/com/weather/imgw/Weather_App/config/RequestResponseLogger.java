@@ -1,4 +1,4 @@
-package com.weather.imgw.Weather_App.infrastucture.config;
+package com.weather.imgw.Weather_App.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;

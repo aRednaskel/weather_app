@@ -23,11 +23,12 @@ class CreateWeatherStationImpl implements CreateWeatherStation {
                         .id_stacji(weatherStationDto.getId_stacji())
                         .stacja(weatherStationDto.getStacja())
                         .data_pomiaru(weatherStationDto.getData_pomiaru())
+                        .godzina_pomiaru(weatherStationDto.getGodzina_pomiaru())
                         .temperatura(weatherStationDto.getTemperatura())
                         .predkosc_wiatru(weatherStationDto.getPredkosc_wiatru())
                         .kierunek_wiatru(weatherStationDto.getKierunek_wiatru())
                         .wilgotnosc_wzgledna(weatherStationDto.getWilgotnosc_wzgledna())
-                        .suma_opadu(weatherStationDto.getSuma_opadu())
+                        .sumaOpadu(weatherStationDto.getSuma_opadu())
                         .cisnienie(weatherStationDto.getCisnienie())
                         .build()
         );
