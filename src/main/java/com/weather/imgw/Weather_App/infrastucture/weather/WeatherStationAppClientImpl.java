@@ -2,7 +2,6 @@ package com.weather.imgw.Weather_App.infrastucture.weather;
 
 import com.weather.imgw.Weather_App.api.weather.WeatherStationDto;
 import com.weather.imgw.Weather_App.domain.weather.WeatherStationAppClient;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;

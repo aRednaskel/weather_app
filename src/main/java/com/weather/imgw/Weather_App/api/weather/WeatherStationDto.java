@@ -1,10 +1,13 @@
 package com.weather.imgw.Weather_App.api.weather;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class WeatherStationDto {
     private long id_stacji;
     private String stacja;
