@@ -1,6 +1,6 @@
-package com.weather.imgw.weatherApp.infrastucture.weather;
+package com.weather.imgw.weatherApp.infrastucture.data;
 
-import com.weather.imgw.weatherApp.api.weather.WeatherStationDto;
+import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
 import com.weather.imgw.weatherApp.domain.weather.WeatherStationAppClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;

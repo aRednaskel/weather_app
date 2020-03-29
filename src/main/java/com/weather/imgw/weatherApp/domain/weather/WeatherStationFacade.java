@@ -1,6 +1,6 @@
 package com.weather.imgw.weatherApp.domain.weather;
 
-import com.weather.imgw.weatherApp.api.weather.WeatherStationDto;
+import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +30,23 @@ public class WeatherStationFacade {
     public List<String[]> findCitiesWithTemperatureHigherThan(double temperature) {
         return weatherStationRetrieval.findCitiesWithTemperature(temperature);
     }
+
+    public List<WeatherStationDto> showDataFromAllCities() {
+        return weatherStationRetrieval.findAllCities();
+    }
+
+    public double getAverageTemperature() {
+        return weatherStationRetrieval.getAverageTemperature();
+    };
+    public double getAverageHumidity() {
+        return weatherStationRetrieval.getAverageHumidity();
+    };
+    public double getAveragePrecipitation() {
+        return weatherStationRetrieval.getAveragePrecipitation();
+    };
+    public double getAveragePressure() {
+        return weatherStationRetrieval.getAveragePressure();
+    };
 
 
 }

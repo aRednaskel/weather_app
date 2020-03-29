@@ -1,4 +1,4 @@
-package com.weather.imgw.weatherApp.api.weather;
+package com.weather.imgw.weatherApp.api.user.weather;
 
 import com.weather.imgw.weatherApp.domain.weather.WeatherStationFacade;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +14,6 @@ public class WeatherStationController {
 
     private final WeatherStationFacade weatherStationFacade;
 
-    @PostMapping(path = "/newStation")
-    public void createNewWeatherStation(@RequestBody WeatherStationDto weatherStationDto) {
-        weatherStationFacade.createNewWeatherStation(weatherStationDto);
-    }
-
     @GetMapping(path = "/notrainy")
     public ResponseEntity<List<String>> findNotRainyCities() {
         return ResponseEntity.ok(weatherStationFacade.findNotRainyCities());
@@ -28,5 +23,12 @@ public class WeatherStationController {
     public ResponseEntity<List<String[]>> findCitiesWithTemperatureHigherThan(@PathVariable double temperature) {
         return ResponseEntity.ok(weatherStationFacade.findCitiesWithTemperatureHigherThan(temperature));
     }
+
+    @GetMapping("/allCities")
+    public ResponseEntity<List<WeatherStationDto>> findDataFromAllCities() {
+        return ResponseEntity.ok(weatherStationFacade.showDataFromAllCities());
+    }
+
+
 
 }

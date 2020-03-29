@@ -1,4 +1,4 @@
-package com.weather.imgw.weatherApp.api.weather;
+package com.weather.imgw.weatherApp.api.user.weather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -6,9 +6,9 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class WeatherStationDto {
     private long id_stacji;

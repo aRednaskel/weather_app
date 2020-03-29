@@ -1,6 +1,6 @@
 package com.weather.imgw.weatherApp.infrastucture.weather;
 
-import com.weather.imgw.weatherApp.api.weather.WeatherStationDto;
+import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
 import com.weather.imgw.weatherApp.domain.model.weather.WeatherStation;
 import com.weather.imgw.weatherApp.domain.weather.CreateWeatherStation;
 import lombok.RequiredArgsConstructor;
@@ -20,16 +20,16 @@ class CreateWeatherStationImpl implements CreateWeatherStation {
     public void create(WeatherStationDto weatherStationDto) {
         weatherRepository.save(
                 WeatherStation.builder()
-                        .id_stacji(weatherStationDto.getId_stacji())
-                        .stacja(weatherStationDto.getStacja())
-                        .data_pomiaru(weatherStationDto.getData_pomiaru())
-                        .godzina_pomiaru(weatherStationDto.getGodzina_pomiaru())
-                        .temperatura(weatherStationDto.getTemperatura())
-                        .predkosc_wiatru(weatherStationDto.getPredkosc_wiatru())
-                        .kierunek_wiatru(weatherStationDto.getKierunek_wiatru())
-                        .wilgotnosc_wzgledna(weatherStationDto.getWilgotnosc_wzgledna())
-                        .sumaOpadu(weatherStationDto.getSuma_opadu())
-                        .cisnienie(weatherStationDto.getCisnienie())
+                        .stationId(weatherStationDto.getId_stacji())
+                        .station(weatherStationDto.getStacja())
+                        .measurementDate(weatherStationDto.getData_pomiaru())
+                        .measurementTime(weatherStationDto.getGodzina_pomiaru())
+                        .temperature(weatherStationDto.getTemperatura())
+                        .windVelocity(weatherStationDto.getPredkosc_wiatru())
+                        .windDirection(weatherStationDto.getKierunek_wiatru())
+                        .humidity(weatherStationDto.getWilgotnosc_wzgledna())
+                        .rainfall(weatherStationDto.getSuma_opadu())
+                        .pressure(weatherStationDto.getCisnienie())
                         .build()
         );
     }
