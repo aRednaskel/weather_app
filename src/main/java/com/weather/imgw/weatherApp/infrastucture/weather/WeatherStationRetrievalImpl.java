@@ -1,13 +1,16 @@
 package com.weather.imgw.weatherApp.infrastucture.weather;
 
-import com.weather.imgw.weatherApp.api.weather.WeatherStationDto;
+import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
+import com.weather.imgw.weatherApp.domain.model.weather.WeatherStation;
 import com.weather.imgw.weatherApp.domain.weather.WeatherStationRetrieval;
+import com.weather.imgw.weatherApp.infrastucture.DtoMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,35 +19,70 @@ class WeatherStationRetrievalImpl implements WeatherStationRetrieval {
     private final WeatherRepository weatherRepository;
 
     @Override
+    public WeatherStation findWithStationName(String name) {
+        return weatherRepository.findByStation(name)
+                .orElseThrow(
+                () -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
     public List<String> findNotRainyCities() {
         List<String> cities = new ArrayList<>();
-        weatherRepository.findBySumaOpaduLessThan(.1)
-                .forEach(weatherStation -> cities.add(weatherStation.getStacja()));
+        weatherRepository.findByRainfallLessThan(.1)
+                .forEach(weatherStation -> cities.add(weatherStation.getStation()));
         return cities;
     }
 
     @Override
     public List<String[]> findCitiesWithTemperature(double temperature) {
         List<String[]> cities = new ArrayList<>();
-        weatherRepository.findByTemperaturaGreaterThan(temperature)
-                .forEach(weatherStation -> cities.add(new String[]{weatherStation.getStacja(), String.valueOf(weatherStation.getTemperatura())}));
+        weatherRepository.findByTemperatureGreaterThan(temperature)
+                .forEach(weatherStation -> cities.add(new String[]{weatherStation.getStation(), String.valueOf(weatherStation.getTemperature())}));
         return cities;
     }
 
     @Override
     public List<WeatherStationDto> findAllCities() {
-        List<WeatherStationDto> allCitiesDto = weatherRepository.findAll().stream().map(weatherStationDto -> WeatherStationDto.builder()
-                .id_stacji(weatherStationDto.getId_stacji())
-                .stacja(weatherStationDto.getStacja())
-                .data_pomiaru(weatherStationDto.getData_pomiaru())
-                .godzina_pomiaru(weatherStationDto.getGodzina_pomiaru())
-                .temperatura(weatherStationDto.getTemperatura())
-                .predkosc_wiatru(weatherStationDto.getPredkosc_wiatru())
-                .kierunek_wiatru(weatherStationDto.getKierunek_wiatru())
-                .wilgotnosc_wzgledna(weatherStationDto.getWilgotnosc_wzgledna())
-                .suma_opadu(weatherStationDto.getSumaOpadu())
-                .cisnienie(weatherStationDto.getCisnienie())
-                .build()).collect(Collectors.toList());
-        return allCitiesDto;
+        return DtoMapper.mapWeatherStationToDto(weatherRepository.findAll());
+    }
+
+    @Override
+    public double getAverageTemperature() {
+        List<WeatherStation> allCities = weatherRepository.findAll();
+        double averageTemperature = 0;
+        for (WeatherStation city : allCities) {
+            averageTemperature += city.getTemperature();
+        }
+        return averageTemperature / allCities.size();
+    }
+
+    @Override
+    public double getAverageHumidity() {
+        List<WeatherStation> allCities = weatherRepository.findAll();
+        double averageHumidity = 0;
+        for (WeatherStation city : allCities) {
+            averageHumidity += city.getHumidity();
+        }
+        return averageHumidity / allCities.size();
+    }
+
+    @Override
+    public double getAveragePrecipitation() {
+        List<WeatherStation> allCities = weatherRepository.findAll();
+        double averagePrecipitation = 0;
+        for (WeatherStation city : allCities) {
+            averagePrecipitation += city.getRainfall();
+        }
+        return averagePrecipitation / allCities.size();
+    }
+
+    @Override
+    public double getAveragePressure() {
+        List<WeatherStation> allCities = weatherRepository.findAll();
+        double averagePressure = 0;
+        for (WeatherStation city : allCities) {
+            averagePressure += city.getPressure();
+        }
+        return averagePressure / allCities.size();
     }
 }

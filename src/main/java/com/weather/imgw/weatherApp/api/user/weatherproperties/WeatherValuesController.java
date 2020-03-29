@@ -1,6 +1,6 @@
-package com.weather.imgw.weatherApp.api.weatherproperties;
+package com.weather.imgw.weatherApp.api.user.weatherproperties;
 
-import com.weather.imgw.weatherApp.domain.weatherproperties.WeatherAverageValuesRetrieval;
+import com.weather.imgw.weatherApp.domain.weather.WeatherStationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,49 +14,41 @@ import java.text.DecimalFormat;
 @RequestMapping("/v1/averageweathervalues")
 public class WeatherValuesController {
 
-    private final WeatherAverageValuesRetrieval weatherAverageValuesRetrieval;
+    private final WeatherStationFacade weatherStationFacade;
 
     @GetMapping
     public ResponseEntity<String> averageValues() {
         DecimalFormat decimalFormat = new DecimalFormat("####0.00");
         StringBuilder averageValues = new StringBuilder();
         averageValues.append("Average temperature : ")
-                .append(decimalFormat.format(weatherAverageValuesRetrieval.getAverageTemperature()))
+                .append(decimalFormat.format(weatherStationFacade.getAverageTemperature()))
                 .append("\nAverage humidity : ")
-                .append(decimalFormat.format(weatherAverageValuesRetrieval.getAverageHumidity()))
+                .append(decimalFormat.format(weatherStationFacade.getAverageHumidity()))
                 .append("\nAverage precipitation : ")
-                .append(decimalFormat.format(weatherAverageValuesRetrieval.getAveragePrecipitation()))
+                .append(decimalFormat.format(weatherStationFacade.getAveragePrecipitation()))
                 .append("\nAverage pressure : ")
-                .append(decimalFormat.format(weatherAverageValuesRetrieval.getAveragePressure() + 100));
+                .append(decimalFormat.format(weatherStationFacade.getAveragePressure() + 100));
         return ResponseEntity.ok(averageValues.toString());
     }
 
     @GetMapping(path = "/averagetemperature")
     public ResponseEntity<Double> averageTemperature() {
-        return ResponseEntity.ok(weatherAverageValuesRetrieval.getAverageTemperature());
+        return ResponseEntity.ok(weatherStationFacade.getAverageTemperature());
     }
 
     @GetMapping(path = "/averagehumidity")
     public ResponseEntity<Double> averageHumidity() {
-        return ResponseEntity.ok(weatherAverageValuesRetrieval.getAverageHumidity());
+        return ResponseEntity.ok(weatherStationFacade.getAverageHumidity());
     }
 
     @GetMapping(path = "/averagePrecipitation")
     public ResponseEntity<Double> averagePrecipitation() {
-        return ResponseEntity.ok(weatherAverageValuesRetrieval.getAveragePrecipitation());
+        return ResponseEntity.ok(weatherStationFacade.getAveragePrecipitation());
     }
 
     @GetMapping(path = "/averagepressure")
     public ResponseEntity<Double> averageRressure() {
-        return ResponseEntity.ok(weatherAverageValuesRetrieval.getAveragePressure());
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("WeatherValuesController{");
-        sb.append("weatherAverageValuesRetrieval=").append(weatherAverageValuesRetrieval);
-        sb.append('}');
-        return sb.toString();
+        return ResponseEntity.ok(weatherStationFacade.getAveragePressure());
     }
 
 

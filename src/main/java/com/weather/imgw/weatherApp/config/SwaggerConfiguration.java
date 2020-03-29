@@ -20,7 +20,7 @@ class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.weather.imgw.weatherApp"))
+                .apis(RequestHandlerSelectors.basePackage("com.weather.imgw.weatherApp.api.user"))
                 .paths(PathSelectors.any())
                 .build();
     }
