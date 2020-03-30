@@ -1,7 +1,9 @@
 package com.weather.imgw.weatherApp.infrastucture;
 
+import com.weather.imgw.weatherApp.api.user.airquality.AirQualityStationDto;
 import com.weather.imgw.weatherApp.api.user.user.UserDto;
 import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
+import com.weather.imgw.weatherApp.domain.model.airquality.AirQualityStation;
 import com.weather.imgw.weatherApp.domain.model.user.User;
 import com.weather.imgw.weatherApp.domain.model.weather.WeatherStation;
 
@@ -26,6 +28,14 @@ public class DtoMapper {
                                 .suma_opadu(weatherStationDto.getRainfall())
                                 .cisnienie(weatherStationDto.getPressure())
                                 .build())
+                .collect(Collectors.toList());
+        return stationDtos;
+    }
+
+    public static List<AirQualityStationDto> mapAirQualityStationToDto(Collection<AirQualityStation> stations) {
+        List<AirQualityStationDto> stationDtos = stations.stream()
+                .map(
+                        station -> new AirQualityStationDto(station.getId(), station.getStationName()))
                 .collect(Collectors.toList());
         return stationDtos;
     }

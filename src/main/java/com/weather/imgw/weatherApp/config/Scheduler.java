@@ -1,5 +1,6 @@
 package com.weather.imgw.weatherApp.config;
 
+import com.weather.imgw.weatherApp.domain.airquality.AirQualityFacade;
 import com.weather.imgw.weatherApp.domain.weather.WeatherStationFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +17,19 @@ public class Scheduler {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private final WeatherStationFacade weatherStationFacade;
+    private final AirQualityFacade airQualityFacade;
 
     @Scheduled(fixedRate = 7200000)
-    public void reportCurrentTime() {
+    public void updatingWeatherStations() {
         weatherStationFacade.createMultipleWeatherStationsFromImgwSite();
-        log.info("Data was updated. The time is now {}", dateFormat.format(new Date()));
+        log.info("WeatherStationData was updated. The time is now {}", dateFormat.format(new Date()));
     }
+
+    @Scheduled(cron = "0 0 5,17 * * SUN-SAT")
+    public void updatingAirQualityStations() {
+        airQualityFacade.downloadAirQualityStations();
+        airQualityFacade.updateAirQualityIndexes();
+        log.info("AirQualityStationsData was updated. The time is now {}", dateFormat.format(new Date()));
+    }
+
 }

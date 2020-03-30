@@ -10,17 +10,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WeatherStationFacade {
 
-    private final CreateWeatherStation createWeatherStation;
+    private final WeatherStationCreator weatherStationCreator;
     private final WeatherStationAppClient weatherStationAppClient;
     private final WeatherStationRetrieval weatherStationRetrieval;
 
     public void createNewWeatherStation(WeatherStationDto weatherStationDto) {
-        createWeatherStation.create(weatherStationDto);
+        weatherStationCreator.create(weatherStationDto);
     }
 
     public void createMultipleWeatherStationsFromImgwSite() {
         List<WeatherStationDto> weatherStationDto = weatherStationAppClient.downloadStations();
-        createWeatherStation.create(weatherStationDto);
+        weatherStationCreator.create(weatherStationDto);
     }
 
     public List<String> findNotRainyCities () {

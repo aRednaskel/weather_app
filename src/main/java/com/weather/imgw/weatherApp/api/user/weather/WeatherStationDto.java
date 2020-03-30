@@ -21,6 +21,4 @@ public class WeatherStationDto {
     private double wilgotnosc_wzgledna;
     private double suma_opadu;
     private double cisnienie;
-
-
 }
