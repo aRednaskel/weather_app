@@ -2,7 +2,7 @@ package com.weather.imgw.weatherApp.infrastucture.weather;
 
 import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
 import com.weather.imgw.weatherApp.domain.model.weather.WeatherStation;
-import com.weather.imgw.weatherApp.domain.weather.CreateWeatherStation;
+import com.weather.imgw.weatherApp.domain.weather.WeatherStationCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-class CreateWeatherStationImpl implements CreateWeatherStation {
+class WeatherStationCreatorImpl implements WeatherStationCreator {
 
     private final WeatherRepository weatherRepository;
 

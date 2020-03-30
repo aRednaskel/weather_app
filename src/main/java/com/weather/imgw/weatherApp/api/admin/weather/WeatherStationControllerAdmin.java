@@ -1,4 +1,4 @@
-package com.weather.imgw.weatherApp.api.admin;
+package com.weather.imgw.weatherApp.api.admin.weather;
 
 import com.weather.imgw.weatherApp.api.user.weather.WeatherStationDto;
 import com.weather.imgw.weatherApp.domain.weather.WeatherStationFacade;
