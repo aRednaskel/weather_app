@@ -35,19 +35,13 @@ public class AirQualityStationAppClient {
         return getData.getBody();
     }
 
-    public List<AirQualityIndexDto> downloadAirQualityIndexes(List<Long> stationIds) {
-        List<AirQualityIndexDto> airQualityIndexDtos = new ArrayList<>();
-        stationIds.forEach(
-                station -> {
-                    String url = String.join("", airQualityParams, String.valueOf(station));
-                        ResponseEntity<AirQualityIndexDto> getData = restTemplate.exchange(
-                                url,
-                                HttpMethod.GET,
-                                HttpEntity.EMPTY,
-                                new ParameterizedTypeReference<AirQualityIndexDto>(){});
-                        airQualityIndexDtos.add(getData.getBody());
-                });
-
-        return airQualityIndexDtos;
+    public AirQualityIndexDto downloadAirQualityIndexes(Long stationId) {
+        String url = String.join("", airQualityParams, String.valueOf(stationId));
+        ResponseEntity<AirQualityIndexDto> getData = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                HttpEntity.EMPTY,
+                new ParameterizedTypeReference<AirQualityIndexDto>(){});
+        return getData.getBody();
     }
 }

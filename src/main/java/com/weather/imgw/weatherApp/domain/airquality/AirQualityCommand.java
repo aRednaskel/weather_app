@@ -1,18 +1,17 @@
-package com.weather.imgw.weatherApp.api.user.airquality;
+package com.weather.imgw.weatherApp.domain.airquality;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
-
+import com.weather.imgw.weatherApp.api.user.airquality.IndexLevelDto;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-@JsonIgnoreProperties(ignoreUnknown=true)
-public class AirQualityStationDto {
+public class AirQualityCommand {
 
     private long id;
-    private String stationName;
     private String stCalcDate;
     private IndexLevelDto stIndexLevel;
     private IndexLevelDto so2IndexLevel;

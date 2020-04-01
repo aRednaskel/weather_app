@@ -18,8 +18,4 @@ public class AirQualityControllerAdmin {
         airQualityFacade.downloadAirQualityStations();
     }
 
-    @GetMapping("/updateIndexes")
-    public void updateAirQualityIndexes() {
-        airQualityFacade.updateAirQualityIndexes();
-    }
 }

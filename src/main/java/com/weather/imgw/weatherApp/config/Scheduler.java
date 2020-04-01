@@ -25,11 +25,4 @@ public class Scheduler {
         log.info("WeatherStationData was updated. The time is now {}", dateFormat.format(new Date()));
     }
 
-    @Scheduled(cron = "0 0 5,17 * * SUN-SAT")
-    public void updatingAirQualityStations() {
-        airQualityFacade.downloadAirQualityStations();
-        airQualityFacade.updateAirQualityIndexes();
-        log.info("AirQualityStationsData was updated. The time is now {}", dateFormat.format(new Date()));
-    }
-
 }
