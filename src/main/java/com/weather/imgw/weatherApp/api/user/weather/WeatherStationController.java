@@ -1,6 +1,7 @@
 package com.weather.imgw.weatherApp.api.user.weather;
 
 import com.weather.imgw.weatherApp.domain.weather.WeatherStationFacade;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/weatherstation")
+@Api(description = "Data retrieved from https://danepubliczne.imgw.pl/api/data/synop")
 public class WeatherStationController {
 
     private final WeatherStationFacade weatherStationFacade;

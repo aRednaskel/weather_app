@@ -27,12 +27,12 @@ public class UserController {
         return userFacade.findUserByLogin(login);
     }
 
-    @GetMapping("observedcities/{login}")
+    @GetMapping("observedCities/{login}")
     public ResponseEntity<List<WeatherStationDto>> findDataFromAllCities(@PathVariable String login) {
         return ResponseEntity.ok(userFacade.showObservedStations(login));
     }
 
-    @GetMapping("citieswithparameters")
+    @GetMapping("citiesWithParameters")
     public ResponseEntity<Map<String, Map<String, Double>>> citiesWithParameters(@RequestParam String login,
                                                                                  @RequestParam(defaultValue = "true") boolean temperature,
                                                                                  @RequestParam(defaultValue = "true") boolean windVelocity, @RequestParam(defaultValue = "true") boolean windDirection,
@@ -45,12 +45,12 @@ public class UserController {
     }
 
 
-    @PutMapping("/observestation")
+    @PutMapping("/observeWeatherStation")
     public void addObservedStation(@RequestParam String login,@RequestParam String stationame) {
         userFacade.addObservedStation(login, stationame);
     }
 
-    @PutMapping("/donotobservestation")
+    @PutMapping("/doNotObserveWeatherStation")
     public void doNotObserveStation(@RequestParam String login,@RequestParam String stationame) {
         userFacade.doNotObserveStation(login, stationame);
     }
