@@ -1,6 +1,5 @@
 package com.weather.imgw.weatherApp.infrastucture.data;
 
-import com.weather.imgw.weatherApp.api.user.airquality.AirQualityIndexDto;
 import com.weather.imgw.weatherApp.api.user.airquality.AirQualityStationDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,13 +33,13 @@ public class AirQualityStationAppClient {
         return getData.getBody();
     }
 
-    public AirQualityIndexDto downloadAirQualityIndexes(Long stationId) {
+    public AirQualityStationDto downloadAirQualityIndexes(Long stationId) {
         String url = String.join("", airQualityParams, String.valueOf(stationId));
-        ResponseEntity<AirQualityIndexDto> getData = restTemplate.exchange(
+        ResponseEntity<AirQualityStationDto> getData = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
-                new ParameterizedTypeReference<AirQualityIndexDto>(){});
+                new ParameterizedTypeReference<AirQualityStationDto>(){});
         return getData.getBody();
     }
 }

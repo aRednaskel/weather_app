@@ -1,6 +1,5 @@
 package com.weather.imgw.weatherApp.infrastucture;
 
-import com.weather.imgw.weatherApp.api.user.airquality.AirQualityIndexDto;
 import com.weather.imgw.weatherApp.api.user.airquality.AirQualityStationDto;
 import com.weather.imgw.weatherApp.api.user.airquality.IndexLevelDto;
 import com.weather.imgw.weatherApp.api.user.user.UserDto;
@@ -39,31 +38,32 @@ public class DtoMapper {
                 .map(
                         station -> AirQualityStationDto.builder()
                                 .id(station.getId())
-                                .stationName(station.getStationName()).build())
+                                .stationName(station.getStationName())
+                                .build())
                 .collect(Collectors.toList());
         return stationDtos;
     }
 
-    public static AirQualityStationDto mapAirQualityIndexToStationDto(AirQualityIndexDto airQualityIndexes, String cityName) {
+    public static AirQualityStationDto mapAirQualityIndexToStationDto(AirQualityStationDto airQualityIndexes, String cityName) {
         AirQualityStationDto airQualityStationDto = AirQualityStationDto.builder()
                 .id(airQualityIndexes.getId())
                 .stationName(cityName)
                 .stCalcDate(airQualityIndexes.getStCalcDate())
-                .stIndexLevel(airQualityIndexes.getStIndexLevel()
+                .stLevel(airQualityIndexes.getStIndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .so2IndexLevel(airQualityIndexes.getSo2IndexLevel()
+                .so2Level(airQualityIndexes.getSo2IndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .no2IndexLevel(airQualityIndexes.getNo2IndexLevel()
+                .no2Level(airQualityIndexes.getNo2IndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .coIndexLevel(airQualityIndexes.getCoIndexLevel()
+                .coLevel(airQualityIndexes.getCoIndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .pm10IndexLevel(airQualityIndexes.getPm10IndexLevel()
+                .pm10Level(airQualityIndexes.getPm10IndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .pm25IndexLevel(airQualityIndexes.getPm25IndexLevel()
+                .pm25Level(airQualityIndexes.getPm25IndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .o3IndexLevel(airQualityIndexes.getO3IndexLevel()
+                .o3Level(airQualityIndexes.getO3IndexLevel()
                         .orElse(new IndexLevelDto(0l, "Property not found")))
-                .c6h6IndexLevel(airQualityIndexes.getC6h6IndexLevel()
+                .c6h6Level(airQualityIndexes.getC6h6IndexLevel()
                                 .orElse(new IndexLevelDto(0l, "Property not found")))
                 .build();
         return airQualityStationDto;
