@@ -8,6 +8,6 @@ _One of the things that are possible to do is to find not rainy cities in Poland
 `or find cities with the tempareture higher than we want`
 
 ## Air quality
-### It is also possible to getinformation about air quality
+### It is also possible to getinformation about [air quality](https://powietrze.gios.gov.pl/pjp/content/api)
 
 ###### You can see what air quality stations there are by getting full list of stations
