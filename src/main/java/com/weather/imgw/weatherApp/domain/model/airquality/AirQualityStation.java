@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Optional;
 
 @Entity
 @Table(name = "AirQualityStations")

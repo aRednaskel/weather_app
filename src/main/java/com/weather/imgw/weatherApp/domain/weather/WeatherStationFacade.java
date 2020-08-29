@@ -37,16 +37,16 @@ public class WeatherStationFacade {
 
     public double getAverageTemperature() {
         return weatherStationRetrieval.getAverageTemperature();
-    };
+    }
     public double getAverageHumidity() {
         return weatherStationRetrieval.getAverageHumidity();
-    };
+    }
     public double getAveragePrecipitation() {
         return weatherStationRetrieval.getAveragePrecipitation();
-    };
+    }
     public double getAveragePressure() {
         return weatherStationRetrieval.getAveragePressure();
-    };
+    }
 
 
 }
