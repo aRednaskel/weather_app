@@ -128,8 +128,10 @@
 				<configuration>
 					<appName>arednaskel-weatherapp</appName>
 					<processTypes>
-						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/Weather_App-0.0.1-SNAPSHOT.jar</web>
+<!--						<web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/Weather_App-0.0.1-SNAPSHOT.jar</web>-->
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* WeatherAppApplication</web>
 					</processTypes>
+
 				</configuration>
 			</plugin>
 		</plugins>
